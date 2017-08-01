@@ -36,7 +36,6 @@ def levelchoice():
             return mediumstring, mediumanswer
         if level == 'hard':
             return hardstring, hardanswer
-            break
         else:
             print "please start over and pick level easy, medium or hard"
 
@@ -59,19 +58,20 @@ def playquiz():
     """the variable maxplay allows the user to decide how many times they will answer if incorrect
     1 is subtracted from maxplay each incorrect answer until it is equal to 0.
     """
-    i=0
-    while i<len(answer):
+    index=0
+    minplay=0
+    while index<len(answer):
         print test
-        response = raw_input('What should we replace' + blanks[i] + 'with? ''')
-        if response == answer[i]:
+        response = raw_input('What should we replace' + blanks[index] + 'with? ''')
+        if response==answer[index]:
             print 'correct, good work!'
-            test=test.replace(blanks[i], response)
-            i+=1
-            if i==len(answer):
+            test=test.replace(blanks[index], response)
+            index+=1
+            if index==len(answer):
                 print 'Thanks for playing ' + name +'!'
         else:
             maxplay-=1
-            if maxplay==0:
+            if maxplay==minplay:
                 print 'Your turns have run out. Thanks for trying'
                 return
             print 'Sorry, try again'
